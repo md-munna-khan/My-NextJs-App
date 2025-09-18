@@ -80,3 +80,15 @@ const CatchAllRoutes =async ({params}:{params:Promise<{slug:string[]}>}) => {
 
 export default CatchAllRoutes;
 ```
+
+## 51-7 Let's dive deep into React server components
+![alt text](image-4.png)
+in the server component not work client component action suppose useState,useEffect, etc
+ so if we are want to use these action use ✅"use Client"
+ then all client  action worked and this is client component not server component ❌ but this is not best practice
+
+ #### best practice
+ ![alt text](image-5.png)
+ for this file which function need action for example search button,order button 
+ this folder we create extra component and call this function not need full file create use client
+ ![alt text](image-6.png)
