@@ -41,3 +41,42 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 - nested Routing
 ![alt text](image-1.png)
+
+## 51-6 Exploring dynamic routes and catch-all routes
+- first create folder in  third bracket [blogId] then create page.tsx
+- under the folder  in app directory all folder by default server component
+![alt text](image-2.png)
+- ReactPromise
+![alt text](image-3.png)
+- in the nextjs params,search params,cookies 
+these all provide to promise thats way if we are access the value must be use async/await 
+- blog/[blogId]/page.stx
+```js
+import React from 'react';
+
+const DynamicBlogPage =async ({params}:{params: Promise<{blogId: string }>}) => {
+   const {blogId} = await params;
+    return (
+        <div>
+            <h1>Dynamic blog page blogId:{blogId}</h1>
+        </div>
+    );
+};
+
+export default DynamicBlogPage;
+```
+- blog/[..slug]/page.stx
+```js
+import React from 'react';
+
+const CatchAllRoutes =async ({params}:{params:Promise<{slug:string[]}>}) => {
+   const {slug} = await params
+    return (
+        <div>
+            <h1 className='text-4xl'> catch all routes :{slug}</h1>
+        </div>
+    );
+};
+
+export default CatchAllRoutes;
+```
