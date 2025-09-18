@@ -92,3 +92,53 @@ in the server component not work client component action suppose useState,useEff
  for this file which function need action for example search button,order button 
  this folder we create extra component and call this function not need full file create use client
  ![alt text](image-6.png)
+
+## 51-8 Link and Programmatic Navigation
+- dynamically link routing use Link not anchor tag
+ ```ts
+ import Link from 'next/link';
+import React from 'react';
+
+const Navbar = () => {
+    return (
+        <div className='w-full flex items-center justify-between px-6 py-3'>
+            <div><Link href="/">Next js</Link></div>
+            <div className='flex  space-x-4'>
+                <Link href='/about'>About</Link>
+                <Link href='/contact'>Contact</Link>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
+```
+- programmatic Navigation
+```ts
+"use client"
+
+import { useRouter } from "next/navigation";
+import React from "react";
+
+const HomePage = () => {
+  const router = useRouter()
+  const handleNavigation = ()=>{
+    router.push("/dashboard")
+  }
+  return (
+    <div className=" flex justify-center flex-col items-center min-h-screen">
+      <div>
+   
+      <h1 className="text-4xl  ">Welcome to Next js Home Page</h1>
+      </div>
+ <div>
+       <button onClick={handleNavigation} className="p-2 bg-red-500 rounded-2xl">
+       Dashboard
+      </button>
+ </div>
+    </div>
+  );
+};
+
+export default HomePage;
+```
