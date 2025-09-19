@@ -142,3 +142,27 @@ const HomePage = () => {
 
 export default HomePage;
 ```
+## 51-9 Explore group routing with different layouts.
+![alt text](image-7.png)
+- Group Routing create a folder in first bracket
+then which folder you visible it just create it and call it 
+- in the route file create a page not-found.tsx for error handeling
+- and main layout not changed
+```ts
+import Navbar from '@/components/Navbar';
+import React from 'react';
+
+const CommonLayout = ({children}:{children:React.ReactNode}) => {
+    return (
+        <div>
+            <Navbar/>
+      <main> {children}</main>
+               <footer className="text-4xl my-4 text-center">
+        this is fokira footer
+      </footer>
+        </div>
+    );
+};
+
+export default CommonLayout;
+```
