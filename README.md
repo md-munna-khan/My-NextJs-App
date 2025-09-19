@@ -41,3 +41,128 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 - nested Routing
 ![alt text](image-1.png)
+
+## 51-6 Exploring dynamic routes and catch-all routes
+- first create folder in  third bracket [blogId] then create page.tsx
+- under the folder  in app directory all folder by default server component
+![alt text](image-2.png)
+- ReactPromise
+![alt text](image-3.png)
+- in the nextjs params,search params,cookies 
+these all provide to promise thats way if we are access the value must be use async/await 
+- blog/[blogId]/page.stx
+```js
+import React from 'react';
+
+const DynamicBlogPage =async ({params}:{params: Promise<{blogId: string }>}) => {
+   const {blogId} = await params;
+    return (
+        <div>
+            <h1>Dynamic blog page blogId:{blogId}</h1>
+        </div>
+    );
+};
+
+export default DynamicBlogPage;
+```
+- blog/[..slug]/page.stx
+```js
+import React from 'react';
+
+const CatchAllRoutes =async ({params}:{params:Promise<{slug:string[]}>}) => {
+   const {slug} = await params
+    return (
+        <div>
+            <h1 className='text-4xl'> catch all routes :{slug}</h1>
+        </div>
+    );
+};
+
+export default CatchAllRoutes;
+```
+
+## 51-7 Let's dive deep into React server components
+![alt text](image-4.png)
+in the server component not work client component action suppose useState,useEffect, etc
+ so if we are want to use these action use ✅"use Client"
+ then all client  action worked and this is client component not server component ❌ but this is not best practice
+
+ #### best practice
+ ![alt text](image-5.png)
+ for this file which function need action for example search button,order button 
+ this folder we create extra component and call this function not need full file create use client
+ ![alt text](image-6.png)
+
+## 51-8 Link and Programmatic Navigation
+- dynamically link routing use Link not anchor tag
+ ```ts
+ import Link from 'next/link';
+import React from 'react';
+
+const Navbar = () => {
+    return (
+        <div className='w-full flex items-center justify-between px-6 py-3'>
+            <div><Link href="/">Next js</Link></div>
+            <div className='flex  space-x-4'>
+                <Link href='/about'>About</Link>
+                <Link href='/contact'>Contact</Link>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
+```
+- programmatic Navigation
+```ts
+"use client"
+
+import { useRouter } from "next/navigation";
+import React from "react";
+
+const HomePage = () => {
+  const router = useRouter()
+  const handleNavigation = ()=>{
+    router.push("/dashboard")
+  }
+  return (
+    <div className=" flex justify-center flex-col items-center min-h-screen">
+      <div>
+   
+      <h1 className="text-4xl  ">Welcome to Next js Home Page</h1>
+      </div>
+ <div>
+       <button onClick={handleNavigation} className="p-2 bg-red-500 rounded-2xl">
+       Dashboard
+      </button>
+ </div>
+    </div>
+  );
+};
+
+export default HomePage;
+```
+## 51-9 Explore group routing with different layouts.
+![alt text](image-7.png)
+- Group Routing create a folder in first bracket
+then which folder you visible it just create it and call it 
+- in the route file create a page not-found.tsx for error handeling
+- and main layout not changed
+```ts
+import Navbar from '@/components/Navbar';
+import React from 'react';
+
+const CommonLayout = ({children}:{children:React.ReactNode}) => {
+    return (
+        <div>
+            <Navbar/>
+      <main> {children}</main>
+               <footer className="text-4xl my-4 text-center">
+        this is fokira footer
+      </footer>
+        </div>
+    );
+};
+
+export default CommonLayout;
+```
