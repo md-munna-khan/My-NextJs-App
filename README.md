@@ -166,3 +166,32 @@ const CommonLayout = ({children}:{children:React.ReactNode}) => {
 
 export default CommonLayout;
 ```
+
+## 51-10 Explore built-in CSS module support. Module summary.
+- if i add search bar but when i navigate others page page not re rendering i mean state not changed 
+- solution change the layout to template then automatically re rendering
+![alt text](image-8.png)
+
+#### Built is css Module
+- style not over flow in nextjs
+![alt text](image-9.png)
+-name add in contact folder = contact.module.css
+```ts
+.text_style{
+  color:rgb(0, 255, 42);
+  font-size: 70px;
+}
+```
+```ts
+import style from "./Contact.module.css"
+
+const ContactPage = () => {
+    return (
+        <div>
+            <h1 className={style.text_style}>Contact Page</h1>
+        </div>
+    );
+};
+
+export default ContactPage;
+```
